@@ -6,15 +6,15 @@
 /*   By: zaddi <zaddi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/21 11:45:33 by zaddi             #+#    #+#             */
-/*   Updated: 2025/11/21 11:47:41 by zaddi            ###   ########.fr       */
+/*   Updated: 2025/12/19 15:22:55 by zaddi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_PUSHSWAP_H
 # define FT_PUSHSWAP_H
 
-# include "libft/libft.h"
-# include "libftprintf/ft_printf.h"
+# include "libft.h"
+# include "ft_printf.h"
 
 # define PUSHA 0
 # define PUSHB 1
