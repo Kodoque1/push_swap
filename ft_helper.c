@@ -6,7 +6,7 @@
 /*   By: zaddi <zaddi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/21 11:54:46 by zaddi             #+#    #+#             */
-/*   Updated: 2025/12/19 16:50:20 by zaddi            ###   ########.fr       */
+/*   Updated: 2025/12/24 15:48:49 by zaddi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	print_ops(t_list *ops)
 	{
 		print_ops(ops->next);
 		i = *((int *)ops->content);
-		ft_putstr(s_ops[i]);
-		ft_putchar('\n');
+		ft_putstr_fd(s_ops[i], 1);
+		ft_putchar_fd('\n', 1);
 	}
 }

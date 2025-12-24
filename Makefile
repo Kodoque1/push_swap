@@ -13,7 +13,7 @@ LIBPRINTF_DIR = libprintf
 # === DEPS NAME ===
 
 LIBFT = $(LIBFT_DIR)/libft.a
-LIBPRINTF = $(LIBPRINTF_DIR)/libprintf.a
+LIBPRINTF = $(LIBPRINTF_DIR)/libftprintf.a
 
 # === UTILS ===
 
@@ -23,26 +23,26 @@ RM := rm -f
 
 CC := cc
 CFLAGS := -Werror -Wextra -Wall -g3
-INCLUDES = -I includes -I $(LIBFT_DIR)/includes $(LIBPRINTF_DIR)/includes
+INCLUDES = -I includes -I $(LIBFT_DIR)/includes -I $(LIBPRINTF_DIR)/includes
 LIBS = $(LIBFT) $(LIBPRINTF)
 
 # === MAIN RULE ===
 
 %.o : %.c
-	$(CC) -c $(CFLAGS) $< -o $@
+	$(CC) $(INCLUDES) -c $(CFLAGS) $< -o $@
 
 all: $(NAME)
 
-$(NAME): $(OBJ)
-	$(CC) $(CFLAGS) $(OBJ) $(LIBS) -o $(NAME)
+$(NAME): $(OBJ) $(LIBFT) $(LIBPRINTF)
+	$(CC) $(CFLAGS) $(INCLUDES) $(OBJ) $(LIBS) -o $(NAME)
 
 # === DEPS BUILD ===
 
 $(LIBFT):
 	$(MAKE) -C $(LIBFT_DIR)
 
-$(LIBFOO):
-	$(MAKE) -C $(LIBFOO_DIR)
+$(LIBPRINTF):
+	$(MAKE) -C $(LIBPRINTF_DIR)
 
 # === CLEANING UP ===
 
