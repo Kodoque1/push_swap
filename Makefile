@@ -24,7 +24,7 @@ RM := rm -f
 CC := cc
 CFLAGS := -Werror -Wextra -Wall -g3
 INCLUDES = -I includes -I $(LIBFT_DIR)/includes -I $(LIBPRINTF_DIR)/includes
-LIBS = $(LIBFT) $(LIBPRINTF)
+LIBS = $(LIBPRINTF) $(LIBFT)
 
 # === MAIN RULE ===
 
