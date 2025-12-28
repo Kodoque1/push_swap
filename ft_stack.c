@@ -6,7 +6,7 @@
 /*   By: zaddi <zaddi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/21 11:47:49 by zaddi             #+#    #+#             */
-/*   Updated: 2025/12/24 16:01:54 by zaddi            ###   ########.fr       */
+/*   Updated: 2025/12/27 12:34:24 by zaddi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,41 +15,6 @@
 int	is_empty(t_list *stack)
 {
 	return (stack == NULL);
-}
-
-void	push(t_list **stack1, t_list **stack2)
-{
-	t_list	*save_ptr;
-
-	if (*stack1)
-	{
-		save_ptr = *stack1;
-		*stack1 = save_ptr->next;
-		ft_lstadd_back(stack2, save_ptr);
-	}
-}
-
-void	rotate(t_list **stack)
-{
-	t_list	*save_ptr;
-	t_list	*index_ptr;
-
-	if (*stack && (*stack)->next)
-	{
-		save_ptr = *stack;
-		*stack = save_ptr->next;
-		save_ptr->next = NULL;
-		index_ptr = *stack;
-		while (index_ptr)
-		{
-			if (!(index_ptr->next))
-			{
-				index_ptr->next = save_ptr;
-				break ;
-			}
-			index_ptr = index_ptr->next;
-		}
-	}
 }
 
 void	sorting_stack(t_list **sa, t_list **sb, t_list **ops)
