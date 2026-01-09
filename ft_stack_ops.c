@@ -6,17 +6,32 @@
 /*   By: zaddi <zaddi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/27 12:28:48 by zaddi             #+#    #+#             */
-/*   Updated: 2025/12/27 17:02:09 by zaddi            ###   ########.fr       */
+/*   Updated: 2026/01/09 17:53:19 by zaddi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_pushswap.h"
 
-void	push(int *stacka, int *stackb)
+void	push(t_list **stack)
+{
+	t_list	*s1;
+	t_list	*s2;
+
+	if (ft_lstsize(*stack) > 1)
+	{
+		s1 = (*stack)->next;
+		s2 = s1->next;
+		(*stack)->next = s2;
+		s1->next = *stack;
+		*stack = s1;
+	}
+}
+
+void	push(t_list **stacka, t_list **stackb)
 {
 	t_list	*save_ptr;
 
-	if (*stacka)
+	if (stacka && *stacka)
 	{
 		save_ptr = *stacka;
 		*stacka = save_ptr->next;
@@ -24,25 +39,37 @@ void	push(int *stacka, int *stackb)
 	}
 }
 
-void	rotate(int *stack)
+void	rotate(t_list **stack)
 {
-	t_list	*save_ptr;
-	t_list	*index_ptr;
+	t_list	*front;
 
-	if (*stack && (*stack)->next)
+	if (stack && *stack)
 	{
-		save_ptr = *stack;
-		*stack = save_ptr->next;
-		save_ptr->next = NULL;
-		index_ptr = *stack;
-		while (index_ptr)
+		front = *stack;
+		*stack = front->next;
+		front->next = NULL;
+		ft_lstadd_back(stack, front);
+	}
+}
+
+void	reverse_rotate(t_list **stack)
+{
+	t_list	*back;
+	t_list	*stack_index;
+
+	if (stack && *stack)
+	{
+		stack_index = *stack;
+		while (stack_index)
 		{
-			if (!(index_ptr->next))
+			if (stack_index->next && !(stack_index->next->next))
 			{
-				index_ptr->next = save_ptr;
+				back = stack_index->next;
+				stack_index->next = NULL;
 				break ;
 			}
-			index_ptr = index_ptr->next;
+			stack_index = stack_index->next;
 		}
+		ft_lstadd_front(stack_index, back);
 	}
 }

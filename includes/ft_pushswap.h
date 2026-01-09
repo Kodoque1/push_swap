@@ -6,7 +6,7 @@
 /*   By: zaddi <zaddi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/21 11:45:33 by zaddi             #+#    #+#             */
-/*   Updated: 2025/12/27 17:11:39 by zaddi            ###   ########.fr       */
+/*   Updated: 2026/01/09 16:39:56 by zaddi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,20 +20,13 @@
 # define PUSHB 1
 # define RA 2
 
-typedef struct s_stack
-{
-	int			*content;
-	int			*capacity;
-	int			*size;
-}	t_stack;
-
-int		is_empty(t_stack *stack);
-void	push(t_stack *stacka, t_stack *stack2);
-void	rotate(t_stack *stack);
-void	rrotate(t_stack *stack);
-void	swap(t_stack *stack);
-void	print_stack(t_stack *stack);
-void	sorting_stack(t_stack *sa, t_stack *sb);
+int		is_empty(t_list *stack);
+void	push(t_list *stacka, t_list *stack2);
+void	rotate(t_list *stack);
+void	rrotate(t_list *stack);
+void	swap(t_list *stack);
+void	print_stack(t_list *stack);
+void	sorting_stack(t_list *sa, t_list *sb, t_list *ops);
 
 int		ft_strisnum(char *str);
 

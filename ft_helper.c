@@ -6,7 +6,7 @@
 /*   By: zaddi <zaddi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/21 11:54:46 by zaddi             #+#    #+#             */
-/*   Updated: 2025/12/24 15:48:49 by zaddi            ###   ########.fr       */
+/*   Updated: 2026/01/09 18:04:01 by zaddi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,5 +39,31 @@ void	print_ops(t_list *ops)
 		i = *((int *)ops->content);
 		ft_putstr_fd(s_ops[i], 1);
 		ft_putchar_fd('\n', 1);
+	}
+}
+
+void	sorta_3(t_list *stack)
+{
+	int	e1;
+	int	e2;
+	int	e3;
+
+	e1 = *((int *) stack->content);
+	e2 = *((int *) stack->next->content);
+	e3 = *((int *) stack->next->next->content);
+
+	if ( e1 < e2)
+	{
+		if (e2 > e3)
+		{
+			ft_printf("sa\n");
+			swap(stack);
+			ft_printf("ra\n");
+			rotate(stack);
+		}
+	}
+	else
+	{
+
 	}
 }
