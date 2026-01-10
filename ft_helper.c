@@ -6,7 +6,7 @@
 /*   By: zaddi <zaddi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/21 11:54:46 by zaddi             #+#    #+#             */
-/*   Updated: 2026/01/09 18:04:01 by zaddi            ###   ########.fr       */
+/*   Updated: 2026/01/10 20:30:05 by zaddi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,22 +48,26 @@ void	sorta_3(t_list *stack)
 	int	e2;
 	int	e3;
 
-	e1 = *((int *) stack->content);
-	e2 = *((int *) stack->next->content);
-	e3 = *((int *) stack->next->next->content);
-
-	if ( e1 < e2)
+	e1 = *((int *)stack->content);
+	e2 = *((int *)stack->next->content);
+	e3 = *((int *)stack->next->next->content);
+	if (e1 < e2 && (e2 > e3))
 	{
-		if (e2 > e3)
+		if ( e3 > e1)
 		{
 			ft_printf("sa\n");
 			swap(stack);
 			ft_printf("ra\n");
 			rotate(stack);
 		}
+		else
+		{
+			ft_printf("rra\n");
+			reverse_rotate(stack);
+		}
 	}
 	else
 	{
-
+		if()
 	}
 }
