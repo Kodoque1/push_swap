@@ -6,7 +6,7 @@
 /*   By: zaddi <zaddi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/21 11:54:46 by zaddi             #+#    #+#             */
-/*   Updated: 2026/01/10 20:30:05 by zaddi            ###   ########.fr       */
+/*   Updated: 2026/01/11 17:28:59 by zaddi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,49 +25,40 @@ int	ft_strisnum(char *str)
 	return (1);
 }
 
-void	print_ops(t_list *ops)
+void	setup_smallest_bigger(t_list *sa, t_list *sb)
 {
-	char	*s_ops[3];
-	int		i;
+	int				j;
+	int				sa_value;
+	t_stack_content	*sb_content;
+	int				min_bigger;
 
-	s_ops[0] = "pa";
-	s_ops[1] = "pb";
-	s_ops[2] = "ra";
-	if (ops)
+	while (sb)
 	{
-		print_ops(ops->next);
-		i = *((int *)ops->content);
-		ft_putstr_fd(s_ops[i], 1);
-		ft_putchar_fd('\n', 1);
+		min_bigger = 2147483647;
+		j = 0;
+		sb_content = (t_stack_content *)(sb->content);
+		while (sa)
+		{
+			sa_value = ((t_stack_content *)(sa->content))->value;
+			if ((sa_value > sb_content->value) && sa_value < min_bigger)
+			{
+				min_bigger = sa_value;
+				sb_content->target_index = j;
+			}
+			j++;
+			sa = sa->next;
+		}
+		sb = sb->next;
 	}
 }
 
-void	sorta_3(t_list *stack)
+void	to_top_cost(t_list *stack)
 {
-	int	e1;
-	int	e2;
-	int	e3;
+	int	size;
 
-	e1 = *((int *)stack->content);
-	e2 = *((int *)stack->next->content);
-	e3 = *((int *)stack->next->next->content);
-	if (e1 < e2 && (e2 > e3))
+	size = ft_lstsize()
+	while(stack)
 	{
-		if ( e3 > e1)
-		{
-			ft_printf("sa\n");
-			swap(stack);
-			ft_printf("ra\n");
-			rotate(stack);
-		}
-		else
-		{
-			ft_printf("rra\n");
-			reverse_rotate(stack);
-		}
-	}
-	else
-	{
-		if()
+
 	}
 }
