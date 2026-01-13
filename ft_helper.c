@@ -6,7 +6,7 @@
 /*   By: zaddi <zaddi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/21 11:54:46 by zaddi             #+#    #+#             */
-/*   Updated: 2026/01/11 17:28:59 by zaddi            ###   ########.fr       */
+/*   Updated: 2026/01/13 20:33:09 by zaddi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,40 +25,24 @@ int	ft_strisnum(char *str)
 	return (1);
 }
 
-void	setup_smallest_bigger(t_list *sa, t_list *sb)
+t_stack_content	*get_index(t_list *stack, int index)
 {
-	int				j;
-	int				sa_value;
-	t_stack_content	*sb_content;
-	int				min_bigger;
+	int	i;
 
-	while (sb)
+	while (i < index)
 	{
-		min_bigger = 2147483647;
-		j = 0;
-		sb_content = (t_stack_content *)(sb->content);
-		while (sa)
-		{
-			sa_value = ((t_stack_content *)(sa->content))->value;
-			if ((sa_value > sb_content->value) && sa_value < min_bigger)
-			{
-				min_bigger = sa_value;
-				sb_content->target_index = j;
-			}
-			j++;
-			sa = sa->next;
-		}
-		sb = sb->next;
+		i++;
+		stack = stack->next;
 	}
+	return (stack->content);
 }
 
-void	to_top_cost(t_list *stack)
+int	compute_total_cost(t_stack_content *content, t_list *sa)
 {
-	int	size;
+	int	b_cost;
+	int	a_cost;
 
-	size = ft_lstsize()
-	while(stack)
-	{
-
-	}
+	b_cost = content->to_top_cost;
+	a_cost = get_index(sa, content->target_index)->to_top_cost;
+	return (b_cost + a_cost);
 }
