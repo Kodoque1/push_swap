@@ -6,7 +6,7 @@
 /*   By: zaddi <zaddi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/11 14:52:01 by zaddi             #+#    #+#             */
-/*   Updated: 2026/01/11 16:11:11 by zaddi            ###   ########.fr       */
+/*   Updated: 2026/01/14 11:20:19 by zaddi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,37 +16,24 @@ void	mini_sort_lt(int e1, int e2, int e3, t_list **stack)
 {
 	if (e3 > e1)
 	{
-		ft_printf("sa\n");
-		swap(stack);
-		ft_printf("ra\n");
-		rotate(stack);
+		swap(stack, 'a');
+		rotate(stack, 'a');
 	}
 	else
-	{
-		ft_printf("rra\n");
-		reverse_rotate(stack);
-	}
+		reverse_rotate(stack, 'a');
 }
 
 void	mini_sort_gt(int e1, int e2, int e3, t_list **stack)
 {
 	if (e2 > e3)
 	{
-		ft_printf("ra\n");
-		rotate(stack);
-		ft_printf("ra\n");
-		rotate(stack);
+		rotate(stack, 'a');
+		rotate(stack, 'a');
 	}
 	else if (e1 > e3)
-	{
-		ft_printf("ra\n");
-		rotate(stack);
-	}
+		rotate(stack, 'a');
 	else
-	{
-		ft_printf("sa\n");
-		swap(stack);
-	}
+		swap(stack, 'a');
 }
 
 void	mini_sort(t_list **stack)

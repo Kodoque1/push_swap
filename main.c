@@ -6,7 +6,7 @@
 /*   By: zaddi <zaddi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/21 11:48:12 by zaddi             #+#    #+#             */
-/*   Updated: 2025/12/24 15:48:24 by zaddi            ###   ########.fr       */
+/*   Updated: 2026/01/14 13:27:34 by zaddi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,11 +42,9 @@ int	arg_to_stack(int argc, char **argv, t_list **arg_stack)
 
 void	processing_args(t_list **arg_stack, t_list **sort_stack, t_list **ops)
 {
-	sorting_stack(arg_stack, sort_stack, ops);
-	print_ops(*ops);
+	sort(arg_stack, sort_stack, ops);
 	ft_lstclear(arg_stack, ft_del);
 	ft_lstclear(sort_stack, ft_del);
-	ft_lstclear(ops, ft_del);
 	exit(0);
 }
 
@@ -62,9 +60,7 @@ int	main(int argc, char **argv)
 	if (argc > 1)
 	{
 		if (arg_to_stack(argc, argv, &arg_stack))
-		{
 			processing_args(&arg_stack, &sort_stack, &ops);
-		}
 		else
 		{
 			ft_printf("Error\n");

@@ -6,17 +6,19 @@
 /*   By: zaddi <zaddi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/27 12:28:48 by zaddi             #+#    #+#             */
-/*   Updated: 2026/01/09 17:53:19 by zaddi            ###   ########.fr       */
+/*   Updated: 2026/01/14 11:12:00 by zaddi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_pushswap.h"
 
-void	push(t_list **stack)
+void	swap(t_list **stack, char sid)
 {
 	t_list	*s1;
 	t_list	*s2;
 
+	if ((sid == 'a') || (sid == 'b'))
+		ft_printf("sw%c\n", sid);
 	if (ft_lstsize(*stack) > 1)
 	{
 		s1 = (*stack)->next;
@@ -27,10 +29,12 @@ void	push(t_list **stack)
 	}
 }
 
-void	push(t_list **stacka, t_list **stackb)
+void	push(t_list **stacka, t_list **stackb, char sid)
 {
 	t_list	*save_ptr;
 
+	if ((sid == 'a') || (sid == 'b'))
+		ft_printf("p%c\n", sid);
 	if (stacka && *stacka)
 	{
 		save_ptr = *stacka;
@@ -39,10 +43,12 @@ void	push(t_list **stacka, t_list **stackb)
 	}
 }
 
-void	rotate(t_list **stack)
+void	rotate(t_list **stack, char sid)
 {
 	t_list	*front;
 
+	if ((sid == 'a') || (sid == 'b'))
+		ft_printf("r%c\n", sid);
 	if (stack && *stack)
 	{
 		front = *stack;
@@ -52,11 +58,13 @@ void	rotate(t_list **stack)
 	}
 }
 
-void	reverse_rotate(t_list **stack)
+void	reverse_rotate(t_list **stack, char sid)
 {
 	t_list	*back;
 	t_list	*stack_index;
 
+	if ((sid == 'a') || (sid == 'b'))
+		ft_printf("rr%c\n", sid);
 	if (stack && *stack)
 	{
 		stack_index = *stack;
