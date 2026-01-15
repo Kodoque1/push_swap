@@ -6,7 +6,7 @@
 /*   By: zaddi <zaddi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/11 14:52:01 by zaddi             #+#    #+#             */
-/*   Updated: 2026/01/14 11:20:19 by zaddi            ###   ########.fr       */
+/*   Updated: 2026/01/15 15:54:28 by zaddi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,5 +51,12 @@ void	mini_sort(t_list **stack)
 			mini_sort_lt(e1, e2, e3, stack);
 		else
 			mini_sort_gt(e1, e2, e3, stack);
+	}
+	else if (ft_lstsize(*stack) == 1)
+	{
+		e1 = ((t_stack_content *)(*stack)->content)->value;
+		e2 = ((t_stack_content *)(*stack)->next->content)->value;
+		if (e1 < e2)
+			swap(stack, 'a');
 	}
 }
