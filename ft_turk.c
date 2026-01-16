@@ -6,13 +6,13 @@
 /*   By: zaddi <zaddi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/13 20:32:12 by zaddi             #+#    #+#             */
-/*   Updated: 2026/01/14 11:55:37 by zaddi            ###   ########.fr       */
+/*   Updated: 2026/01/16 14:39:10 by zaddi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_pushswap.h"
 
-static void	to_top_cost(t_list *stack)
+void	to_top_cost(t_list *stack)
 {
 	int				size;
 	int				i;
@@ -20,21 +20,23 @@ static void	to_top_cost(t_list *stack)
 
 	size = ft_lstsize(stack);
 	i = 0;
-	while (i < (size / 2))
+	while (i <= (size / 2))
 	{
 		s_content = ((t_stack_content *)stack->content);
 		s_content->to_top_cost = i;
 		i++;
+		stack = stack->next;
 	}
 	while (i < size)
 	{
 		s_content = ((t_stack_content *)stack->content);
 		s_content->to_top_cost = i - size;
 		i++;
+		stack = stack->next;
 	}
 }
 
-static int	select_to_push(t_list *sa, t_list *sb)
+int	select_to_push(t_list *sa, t_list *sb)
 {
 	int				i;
 	int				size;
@@ -60,10 +62,11 @@ static int	select_to_push(t_list *sa, t_list *sb)
 	return (optimal_index);
 }
 
-static void	setup_smallest_bigger(t_list *sa, t_list *sb)
+void	setup_smallest_bigger(t_list *sa, t_list *sb)
 {
 	int				j;
 	int				sa_value;
+	t_list			*index_sa;
 	t_stack_content	*sb_content;
 	int				min_bigger;
 
@@ -72,43 +75,73 @@ static void	setup_smallest_bigger(t_list *sa, t_list *sb)
 		min_bigger = 2147483647;
 		j = 0;
 		sb_content = (t_stack_content *)(sb->content);
-		while (sa)
+		index_sa = sa;
+		while (index_sa)
 		{
-			sa_value = ((t_stack_content *)(sa->content))->value;
+			sa_value = ((t_stack_content *)(index_sa->content))->value;
 			if ((sa_value > sb_content->value) && sa_value < min_bigger)
 			{
 				min_bigger = sa_value;
 				sb_content->target_index = j;
 			}
 			j++;
-			sa = sa->next;
+			index_sa = index_sa->next;
 		}
 		sb = sb->next;
 	}
 }
 
+void	final_rotate(t_list **stack)
+{
+	int				min;
+	int				min_index;
+	int				i;
+	t_list			*stack_pointer;
+	t_stack_content	*content;
+
+	min = 2147483647;
+	i = 0;
+	stack_pointer = *stack;
+	while (stack_pointer)
+	{
+		content = (t_stack_content *)stack_pointer->content;
+		if (content->value < min)
+		{
+			min = content->value;
+			min_index = i;
+		}
+		i++;
+		stack_pointer = stack_pointer->next;
+	}
+	to_top_cost(*stack);
+	rotate_to_top(get_index(*stack, min_index), stack, 'a');
+}
+
 void	sort_turk(t_list **sa, t_list **sb)
 {
 	int				size;
-	int				index;
-	int				top_cost;
-	t_stack_content	*content;
 
-	size = ft_size(*sa);
-	while (size > 2)
-	{
+	size = ft_lstsize(*sa);
+	while (size-- > 2)
 		push(sa, sb, 'b');
-		size--;
-	}
+	//mini_sort(sa);
 	while (*sb)
 	{
 		setup_smallest_bigger(*sa, *sb);
 		to_top_cost(*sa);
 		to_top_cost(*sb);
-		index = select_to_push(*sa, *sb);
-		content = get_index(*sb, index);
-		rotate_to_top(content, sb, 'b');
-		rotate_to_top(get_index(*sa, content->target_index), sa, 'a');
-		push(sa, sb, 'a');
+		/*ft_printf("=======\n");
+		ft_printf("Stack A:\n");
+		print_stack(*sa);
+		ft_printf("\n");
+		ft_printf("Stack B:\n");
+		print_stack(*sb);
+		ft_printf("=======\n");*/
+		optimal_to_top(sa, sb);
+		push(sb, sa, 'a');
 	}
+	final_rotate(sa);
+	ft_printf("=======\n");
+	ft_printf("Final Stack A:\n");
+	print_stack(*sa);
 }

@@ -6,7 +6,7 @@
 /*   By: zaddi <zaddi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/21 11:45:33 by zaddi             #+#    #+#             */
-/*   Updated: 2026/01/14 11:35:36 by zaddi            ###   ########.fr       */
+/*   Updated: 2026/01/16 13:10:10 by zaddi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,10 @@
 # define PUSHA 0
 # define PUSHB 1
 # define RA 2
+
+# define NEGATIVE 0
+# define POSITIVE 1
+# define DIFFERENT 2
 
 typedef struct s_stack_content
 {
@@ -33,14 +37,15 @@ void			rotate(t_list **stack, char c);
 void			reverse_rotate(t_list **stack, char c);
 void			swap(t_list **stack, char c);
 void			print_stack(t_list *stack);
-void			sorting_stack(t_list **sa, t_list **sb);
-void			mini_sort_a(t_list **stack);
+void			mini_sort(t_list **stack);
 void			setup_smallest_bigger(t_list *sa, t_list *sb);
 void			rotate_to_top(t_stack_content *c, t_list **stack, char sid);
+void			optimal_to_top(t_list **sa, t_list **sb);
 void			sort_turk(t_list **sa, t_list **sb);
 int				ft_strisnum(char *str);
+int				select_to_push(t_list *sa, t_list *sb);
 int				compute_total_cost(t_stack_content *content, t_list *sa);
+int				min(int a, int b);
 t_stack_content	*get_index(t_list *stack, int index);
-
 
 #endif

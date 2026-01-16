@@ -6,7 +6,7 @@
 /*   By: zaddi <zaddi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/27 12:28:48 by zaddi             #+#    #+#             */
-/*   Updated: 2026/01/14 11:12:00 by zaddi            ###   ########.fr       */
+/*   Updated: 2026/01/16 13:24:40 by zaddi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	swap(t_list **stack, char sid)
 	t_list	*s2;
 
 	if ((sid == 'a') || (sid == 'b'))
-		ft_printf("sw%c\n", sid);
+		ft_printf("s%c\n", sid);
 	if (ft_lstsize(*stack) > 1)
 	{
 		s1 = (*stack)->next;
@@ -65,7 +65,8 @@ void	reverse_rotate(t_list **stack, char sid)
 
 	if ((sid == 'a') || (sid == 'b'))
 		ft_printf("rr%c\n", sid);
-	if (stack && *stack)
+	back = NULL;
+	if (stack && *stack && ft_lstsize(*stack) > 1)
 	{
 		stack_index = *stack;
 		while (stack_index)
@@ -78,6 +79,6 @@ void	reverse_rotate(t_list **stack, char sid)
 			}
 			stack_index = stack_index->next;
 		}
-		ft_lstadd_front(stack_index, back);
+		ft_lstadd_front(stack, back);
 	}
 }

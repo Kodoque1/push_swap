@@ -6,7 +6,7 @@
 /*   By: zaddi <zaddi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/21 11:48:12 by zaddi             #+#    #+#             */
-/*   Updated: 2026/01/15 15:12:39 by zaddi            ###   ########.fr       */
+/*   Updated: 2026/01/15 17:53:02 by zaddi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,17 +19,20 @@ void	ft_del(void *data)
 
 int	arg_to_stack(int argc, char **argv, t_list **arg_stack)
 {
-	int	i;
-	int	conv;
+	int				i;
+	t_stack_content	*content;
 
-	i = argc - 1;
-	while (i > 0)
+	i = 1;
+	while (i < argc)
 	{
 		if (ft_strisnum(argv[i]))
 		{
-			conv = ft_atoi(argv[i]);
-			ft_lstadd_back(arg_stack, ft_lstnew(&conv));
-			i--;
+			content = (t_stack_content *)malloc(sizeof(t_stack_content));
+			content->target_index = -1;
+			content->to_top_cost = -1;
+			content->value = ft_atoi(argv[i]);
+			ft_lstadd_back(arg_stack, ft_lstnew(content));
+			i++;
 		}
 		else
 		{
@@ -40,7 +43,7 @@ int	arg_to_stack(int argc, char **argv, t_list **arg_stack)
 	return (1);
 }
 
-void	processing_args(t_list **arg_stack, t_list **sort_stack, t_list **ops)
+void	processing_args(t_list **arg_stack, t_list **sort_stack)
 {
 	sort_turk(arg_stack, sort_stack);
 	ft_lstclear(arg_stack, ft_del);
@@ -52,15 +55,13 @@ int	main(int argc, char **argv)
 {
 	t_list	*arg_stack;
 	t_list	*sort_stack;
-	t_list	*ops;
 
 	sort_stack = NULL;
 	arg_stack = NULL;
-	ops = NULL;
 	if (argc > 1)
 	{
 		if (arg_to_stack(argc, argv, &arg_stack))
-			processing_args(&arg_stack, &sort_stack, &ops);
+			processing_args(&arg_stack, &sort_stack);
 		else
 		{
 			ft_printf("Error\n");
