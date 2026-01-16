@@ -6,7 +6,7 @@
 /*   By: zaddi <zaddi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/13 20:32:12 by zaddi             #+#    #+#             */
-/*   Updated: 2026/01/16 14:11:29 by zaddi            ###   ########.fr       */
+/*   Updated: 2026/01/16 18:04:30 by zaddi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ void	optimal_to_top(t_list **sa, t_list **sb)
 			nb->to_top_cost -= rot;
 			double_rotate(sa, sb, rot, 1);
 		}
-		else if ((na->value < 0) && (nb->value < 0))
+		else if ((na->to_top_cost < 0) && (nb->to_top_cost < 0))
 		{
 			rot = min(ft_abs(na->to_top_cost), ft_abs(nb->to_top_cost));
 			na->to_top_cost += rot;
@@ -90,4 +90,6 @@ void	optimal_to_top(t_list **sa, t_list **sb)
 	rotate_to_top(nb, sb, 'b');
 	if (na)
 		rotate_to_top(na, sa, 'a');
+	else
+		min_to_top(sa);
 }
