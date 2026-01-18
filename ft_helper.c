@@ -6,7 +6,7 @@
 /*   By: zaddi <zaddi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/21 11:54:46 by zaddi             #+#    #+#             */
-/*   Updated: 2026/01/18 13:04:40 by zaddi            ###   ########.fr       */
+/*   Updated: 2026/01/18 14:32:09 by zaddi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,11 @@ int	ft_strisnum(char *str)
 		str++;
 	}
 	return (1);
+}
+
+void	ft_del(void *data)
+{
+	free(data);
 }
 
 t_stack_content	*get_index(t_list *stack, int index)
@@ -51,40 +56,6 @@ void	print_stack(t_list *stack)
 		stack = stack->next;
 	}
 }
-
-int	compute_total_cost(t_stack_content *content, t_list *sa)
-{
-	int	b_cost;
-	int	a_cost;
-	int	sum;
-
-	b_cost = content->to_top_cost;
-	if (content->target_index < 0)
-		a_cost = get_index(sa, index_min(sa))->to_top_cost;
-	else
-		a_cost = get_index(sa, content->target_index)->to_top_cost;
-	if ((a_cost < 0) && (b_cost < 0))
-	{
-		a_cost = ft_abs(a_cost);
-		b_cost = ft_abs(b_cost);
-		sum = b_cost + a_cost - min(b_cost, a_cost);
-	}
-	else if ((a_cost > 0) && (b_cost > 0))
-		sum = b_cost + a_cost - min(b_cost, a_cost);
-	else
-		sum = ft_abs(a_cost) + ft_abs(b_cost);
-	return (sum);
-}
-
-/*int	compute_total_cost(t_stack_content *content, t_list *sa)
-{
-	int	b_cost;
-	int	a_cost;
-
-	b_cost = ft_abs(content->to_top_cost);
-	a_cost = ft_abs(get_index(sa, content->target_index)->to_top_cost);
-	return (a_cost + b_cost);
-}*/
 
 int	min(int a, int b)
 {
