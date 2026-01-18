@@ -6,7 +6,7 @@
 /*   By: zaddi <zaddi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/21 11:54:46 by zaddi             #+#    #+#             */
-/*   Updated: 2026/01/16 13:41:47 by zaddi            ###   ########.fr       */
+/*   Updated: 2026/01/18 13:04:40 by zaddi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ int	compute_total_cost(t_stack_content *content, t_list *sa)
 
 	b_cost = content->to_top_cost;
 	if (content->target_index < 0)
-		a_cost = 0;
+		a_cost = get_index(sa, index_min(sa))->to_top_cost;
 	else
 		a_cost = get_index(sa, content->target_index)->to_top_cost;
 	if ((a_cost < 0) && (b_cost < 0))
@@ -75,6 +75,16 @@ int	compute_total_cost(t_stack_content *content, t_list *sa)
 		sum = ft_abs(a_cost) + ft_abs(b_cost);
 	return (sum);
 }
+
+/*int	compute_total_cost(t_stack_content *content, t_list *sa)
+{
+	int	b_cost;
+	int	a_cost;
+
+	b_cost = ft_abs(content->to_top_cost);
+	a_cost = ft_abs(get_index(sa, content->target_index)->to_top_cost);
+	return (a_cost + b_cost);
+}*/
 
 int	min(int a, int b)
 {

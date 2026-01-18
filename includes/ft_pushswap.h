@@ -6,7 +6,7 @@
 /*   By: zaddi <zaddi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/21 11:45:33 by zaddi             #+#    #+#             */
-/*   Updated: 2026/01/16 18:05:02 by zaddi            ###   ########.fr       */
+/*   Updated: 2026/01/18 12:11:06 by zaddi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ int				ft_strisnum(char *str);
 int				select_to_push(t_list *sa, t_list *sb);
 int				compute_total_cost(t_stack_content *content, t_list *sa);
 int				min(int a, int b);
+int				index_min(t_list *stack);
 t_stack_content	*get_index(t_list *stack, int index);
 
 #endif

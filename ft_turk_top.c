@@ -6,7 +6,7 @@
 /*   By: zaddi <zaddi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/13 20:32:12 by zaddi             #+#    #+#             */
-/*   Updated: 2026/01/16 18:04:30 by zaddi            ###   ########.fr       */
+/*   Updated: 2026/01/18 13:04:22 by zaddi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,8 @@ void	optimal_to_top(t_list **sa, t_list **sb)
 	index = select_to_push(*sa, *sb);
 	nb = get_index(*sb, index);
 	na = NULL;
-	if (nb->target_index > 0)
+
+	if (nb->target_index >= 0)
 	{
 		na = get_index(*sa, nb->target_index);
 		if ((na->to_top_cost > 0) && (nb->to_top_cost > 0))

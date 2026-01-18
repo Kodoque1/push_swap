@@ -6,7 +6,7 @@
 /*   By: zaddi <zaddi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/13 20:32:12 by zaddi             #+#    #+#             */
-/*   Updated: 2026/01/16 18:18:30 by zaddi            ###   ########.fr       */
+/*   Updated: 2026/01/18 13:06:53 by zaddi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,58 +91,46 @@ void	setup_smallest_bigger(t_list *sa, t_list *sb)
 		sb = sb->next;
 	}
 }
-int index_min(t_list *sa)
+
+int	index_min(t_list *stack)
 {
-		int				min;
+	int				min;
 	int				min_index;
 	int				i;
-	min = 2147483647;
-	i = 0;
-	stack_pointer = *stack;
-	while (stack_pointer)
-	{
-		content = (t_stack_content *)stack_pointer->content;
-		if (content->value < min)
-		{
-			min = content->value;
-			min_index = i;
-		}
-		i++;
-		stack_pointer = stack_pointer->next;
-	}
-}
-
-void	min_to_top(t_list **stack)
-{
-
-	t_list			*stack_pointer;
 	t_stack_content	*content;
 
 	min = 2147483647;
 	i = 0;
-	stack_pointer = *stack;
-	while (stack_pointer)
+	while (stack)
 	{
-		content = (t_stack_content *)stack_pointer->content;
+		content = (t_stack_content *)stack->content;
 		if (content->value < min)
 		{
 			min = content->value;
 			min_index = i;
 		}
 		i++;
-		stack_pointer = stack_pointer->next;
+		stack = stack->next;
 	}
+	return (min_index);
+}
+
+void	min_to_top(t_list **stack)
+{
+	int		min_index;
+
+	min_index = index_min(*stack);
 	rotate_to_top(get_index(*stack, min_index), stack, 'a');
 }
 
 void	sort_turk(t_list **sa, t_list **sb)
 {
-	int				size;
+	int	size;
 
 	size = ft_lstsize(*sa);
 	while (size-- > 2)
 		push(sa, sb, 'b');
-	//mini_sort(sa);
+	// mini_sort(sa);
 	while (*sb)
 	{
 		setup_smallest_bigger(*sa, *sb);
@@ -158,12 +146,12 @@ void	sort_turk(t_list **sa, t_list **sb)
 		optimal_to_top(sa, sb);
 		push(sb, sa, 'a');
 	}
-	ft_printf("=======\n");
+	/*ft_printf("=======\n");
 	ft_printf("Before final rotate :\n");
-	print_stack(*sa);
+	print_stack(*sa);*/
 	to_top_cost(*sa);
 	min_to_top(sa);
-	ft_printf("=======\n");
+	/*ft_printf("=======\n");
 	ft_printf("Final Stack A:\n");
-	print_stack(*sa);
+	print_stack(*sa);*/
 }
