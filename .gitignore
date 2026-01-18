@@ -1,6 +1,10 @@
 # Prerequisites
 *.d
 
+# conf file
+
+*.json
+
 # Object files
 *.o
 *.ko
