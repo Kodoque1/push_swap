@@ -6,24 +6,11 @@
 /*   By: zaddi <zaddi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/21 11:54:46 by zaddi             #+#    #+#             */
-/*   Updated: 2026/01/18 14:32:09 by zaddi            ###   ########.fr       */
+/*   Updated: 2026/01/25 11:04:13 by zaddi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_pushswap.h"
-
-int	ft_strisnum(char *str)
-{
-	if ((*str == '-') || (*str == '-'))
-		str++;
-	while (*str)
-	{
-		if (!ft_isdigit(*str))
-			return (0);
-		str++;
-	}
-	return (1);
-}
 
 void	ft_del(void *data)
 {
@@ -57,10 +44,4 @@ void	print_stack(t_list *stack)
 	}
 }
 
-int	min(int a, int b)
-{
-	if (a <= b)
-		return (a);
-	else
-		return (b);
-}
+

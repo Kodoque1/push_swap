@@ -6,7 +6,7 @@
 /*   By: zaddi <zaddi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/21 11:45:33 by zaddi             #+#    #+#             */
-/*   Updated: 2026/01/18 14:31:27 by zaddi            ###   ########.fr       */
+/*   Updated: 2026/01/25 10:59:32 by zaddi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,11 +43,13 @@ void			optimal_to_top(t_list **sa, t_list **sb);
 void			sort_turk(t_list **sa, t_list **sb);
 void			ft_del(void *data);
 void			min_to_top(t_list **stack);
+void			input_type(char **argv, int argc, char ***convert);
+void			free_split(char **strs);
 int				arg_to_stack(int argc, char **argv, t_list **arg_stack);
 int				ft_strisnum(char *str);
 int				select_to_push(t_list *sa, t_list *sb);
 int				compute_total_cost(t_stack_content *content, t_list *sa);
-int				min(int a, int b);
+int				ft_min(int a, int b);
 int				index_min(t_list *stack);
 
 t_stack_content	*get_index(t_list *stack, int index);
