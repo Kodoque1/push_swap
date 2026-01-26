@@ -6,7 +6,7 @@
 /*   By: zaddi <zaddi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/21 11:48:12 by zaddi             #+#    #+#             */
-/*   Updated: 2026/01/25 11:03:56 by zaddi            ###   ########.fr       */
+/*   Updated: 2026/01/26 16:16:13 by zaddi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,6 @@ int	main(int argc, char **argv)
 	}
 	else
 	{
-		ft_printf("error\n");
 		ft_putstr_fd("Error\n", 2);
 		exit(-1);
 	}

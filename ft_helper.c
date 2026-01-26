@@ -6,7 +6,7 @@
 /*   By: zaddi <zaddi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/21 11:54:46 by zaddi             #+#    #+#             */
-/*   Updated: 2026/01/25 11:04:13 by zaddi            ###   ########.fr       */
+/*   Updated: 2026/01/26 16:58:07 by zaddi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,4 +44,18 @@ void	print_stack(t_list *stack)
 	}
 }
 
+int	number_in_stack(t_list *arg_stack, char *number)
+{
+	t_stack_content	*content;
+	int				num;
 
+	num = ft_atoi(number);
+	while (arg_stack)
+	{
+		content = arg_stack->content;
+		if (content->value == num)
+			return (1);
+		arg_stack = arg_stack->next;
+	}
+	return (0);
+}

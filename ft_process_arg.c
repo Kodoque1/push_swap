@@ -6,31 +6,58 @@
 /*   By: zaddi <zaddi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/18 13:45:43 by zaddi             #+#    #+#             */
-/*   Updated: 2026/01/25 11:03:39 by zaddi            ###   ########.fr       */
+/*   Updated: 2026/01/26 17:12:12 by zaddi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_pushswap.h"
 
-int	out_of_bound(char *num)
+int	out_of_bound(char *str)
 {
-	if (*num == '-')
-		return (ft_strncmp("2147483648", num + 1, 10) < 0);
+	int	sign;
+	long	nbr;
+
+	nbr = 0;
+	sign = 1;
+	if (*str == '+')
+		str++;
+	else if (*str == '-')
+	{
+		sign = -1;
+		str++;
+	}
+	while (ft_isdigit(*str))
+	{
+		nbr = nbr * 10 + (*str - '0');
+		str++;
+	}
+	nbr = nbr *sign;
+	if ((nbr > 2147483647) || (nbr < -2147483648))
+		return (1);
 	else
-		return (ft_strncmp("2147483647", num, 10) < 0);
+		return(0);
+
 }
 
-void	input_type(char **argv, int argc, char ***convert)
+int	arg_to_stack(int argc, char **argv, t_list **arg_stack)
 {
-	ft_printf("%i\n", argc);
+	char **strs;
+	int ret;
+
+	strs = NULL;
 	if (argc == 1)
 	{
-		ft_printf("%s\n", argv[1]);
-		*convert = ft_split(argv[1], ' ');
-		ft_printf("%s\n", (*convert)[1]);
+		strs = ft_split(argv[1], ' ');
+		if (strs)
+			ret = convert(count_word(argv[1], ' '), strs, arg_stack);
+		else
+			return (0);
 	}
 	else
-		*convert = argv + 1;
+		ret = convert(argc, argv+1, arg_stack);
+	if (strs)
+		free_array(strs);
+	return (ret);
 }
 
 void	add_new_number(t_list **arg_stack, char *number)
@@ -44,48 +71,19 @@ void	add_new_number(t_list **arg_stack, char *number)
 	ft_lstadd_back(arg_stack, ft_lstnew(content));
 }
 
-int	number_in_stack(t_list *arg_stack, char *number)
-{
-	t_stack_content	*content;
-	int				num;
-
-	num = ft_atoi(number);
-	while (arg_stack)
-	{
-		content = arg_stack->content;
-		if (content->value == num)
-			return (1);
-		arg_stack = arg_stack->next;
-	}
-	return (0);
-}
-
-int	arg_to_stack(int argc, char **argv, t_list **arg_stack)
+int	convert(int argc, char **argv, t_list **arg_stack)
 {
 	int		i;
-	char	**convert;
 
 	i = 0;
-	convert = NULL;
-	input_type(argv, argc, &convert);
-	ft_printf("%p\n", convert);
-	ft_printf("1:%s 2:%s 3:%s \n", convert[0], convert[1], convert[0]);
 	while (i < argc)
 	{
-		ft_printf("num:%s \n", convert[i]);
-		if (convert && ft_strisnum(convert[i]) && !out_of_bound(convert[i]))
-			//&& !number_in_stack(*arg_stack, convert[i]))
-		{
-			add_new_number(arg_stack, convert[i]);
-		}
+		if (ft_strisnum(argv[i]) && !out_of_bound(argv[i])
+			&& !number_in_stack(*arg_stack, argv[i]))
+			add_new_number(arg_stack, argv[i]);
 		else
-		{
-			ft_lstclear(arg_stack, free);
-			// free_split(convert);
 			return (0);
-		}
 		i++;
 	}
-	// free_split(convert);
 	return (1);
 }

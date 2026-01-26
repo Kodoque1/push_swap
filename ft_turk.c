@@ -6,7 +6,7 @@
 /*   By: zaddi <zaddi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/13 20:32:12 by zaddi             #+#    #+#             */
-/*   Updated: 2026/01/18 13:06:53 by zaddi            ###   ########.fr       */
+/*   Updated: 2026/01/26 17:14:42 by zaddi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,28 +130,14 @@ void	sort_turk(t_list **sa, t_list **sb)
 	size = ft_lstsize(*sa);
 	while (size-- > 2)
 		push(sa, sb, 'b');
-	// mini_sort(sa);
 	while (*sb)
 	{
 		setup_smallest_bigger(*sa, *sb);
 		to_top_cost(*sa);
 		to_top_cost(*sb);
-		/*ft_printf("=======\n");
-		ft_printf("Stack A:\n");
-		print_stack(*sa);
-		ft_printf("\n");
-		ft_printf("Stack B:\n");
-		print_stack(*sb);
-		ft_printf("=======\n");*/
 		optimal_to_top(sa, sb);
 		push(sb, sa, 'a');
 	}
-	/*ft_printf("=======\n");
-	ft_printf("Before final rotate :\n");
-	print_stack(*sa);*/
 	to_top_cost(*sa);
 	min_to_top(sa);
-	/*ft_printf("=======\n");
-	ft_printf("Final Stack A:\n");
-	print_stack(*sa);*/
 }

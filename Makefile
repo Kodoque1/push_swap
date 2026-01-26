@@ -1,5 +1,5 @@
 NAME := push_swap
-SRC := main.c ft_helper.c ft_stack_ops.c ft_turk.c ft_mini_sort.c ft_turk_top.c ft_cost.c ft_delete_split.c ft_process_arg.c
+SRC := main.c ft_helper.c ft_stack_ops.c ft_turk.c ft_turk_top.c ft_cost.c ft_process_arg.c
 OBJ  := $(SRC:.c=.o)
 
 # === DEPS DIR ===
