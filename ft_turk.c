@@ -6,7 +6,7 @@
 /*   By: zaddi <zaddi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/13 20:32:12 by zaddi             #+#    #+#             */
-/*   Updated: 2026/01/26 17:14:42 by zaddi            ###   ########.fr       */
+/*   Updated: 2026/01/26 17:27:14 by zaddi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,52 +67,28 @@ void	setup_smallest_bigger(t_list *sa, t_list *sb)
 	int				j;
 	int				sa_value;
 	t_list			*index_sa;
-	t_stack_content	*sb_content;
 	int				min_bigger;
 
 	while (sb)
 	{
 		min_bigger = 2147483647;
 		j = 0;
-		sb_content = (t_stack_content *)(sb->content);
-		sb_content->target_index = -1;
+		((t_stack_content *)(sb->content))->target_index = -1;
 		index_sa = sa;
 		while (index_sa)
 		{
 			sa_value = ((t_stack_content *)(index_sa->content))->value;
-			if ((sa_value > sb_content->value) && sa_value < min_bigger)
+			if ((sa_value > ((t_stack_content *)(sb->content))->value)
+			&& sa_value < min_bigger)
 			{
 				min_bigger = sa_value;
-				sb_content->target_index = j;
+				((t_stack_content *)(sb->content))->target_index = j;
 			}
 			j++;
 			index_sa = index_sa->next;
 		}
 		sb = sb->next;
 	}
-}
-
-int	index_min(t_list *stack)
-{
-	int				min;
-	int				min_index;
-	int				i;
-	t_stack_content	*content;
-
-	min = 2147483647;
-	i = 0;
-	while (stack)
-	{
-		content = (t_stack_content *)stack->content;
-		if (content->value < min)
-		{
-			min = content->value;
-			min_index = i;
-		}
-		i++;
-		stack = stack->next;
-	}
-	return (min_index);
 }
 
 void	min_to_top(t_list **stack)

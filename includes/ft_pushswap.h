@@ -6,7 +6,7 @@
 /*   By: zaddi <zaddi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/21 11:45:33 by zaddi             #+#    #+#             */
-/*   Updated: 2026/01/26 17:10:15 by zaddi            ###   ########.fr       */
+/*   Updated: 2026/01/26 17:33:59 by zaddi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,8 @@ int				ft_min(int a, int b);
 int				index_min(t_list *stack);
 int				convert(int argc, char **argv, t_list **arg_stack);
 int				number_in_stack(t_list *arg_stack, char *number);
+int				index_min(t_list *stack);
+
 
 t_stack_content	*get_index(t_list *stack, int index);
 

@@ -6,12 +6,11 @@
 /*   By: zaddi <zaddi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/13 20:32:12 by zaddi             #+#    #+#             */
-/*   Updated: 2026/01/25 10:59:32 by zaddi            ###   ########.fr       */
+/*   Updated: 2026/01/26 17:34:26 by zaddi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_pushswap.h"
-
 
 void	double_rotate(t_list **sa, t_list **sb, int rot, int sign)
 {
@@ -59,34 +58,40 @@ void	rotate_to_top(t_stack_content *c, t_list **stack, char sid)
 	}
 }
 
+static void	rot(t_stack_content *na, t_stack_content *nb,
+	t_list **sa, t_list **sb)
+{
+	int				rot;
+
+	if ((na->to_top_cost > 0) && (nb->to_top_cost > 0))
+	{
+		rot = ft_min(na->to_top_cost, nb->to_top_cost);
+		na->to_top_cost -= rot;
+		nb->to_top_cost -= rot;
+		double_rotate(sa, sb, rot, 1);
+	}
+	else if ((na->to_top_cost < 0) && (nb->to_top_cost < 0))
+	{
+		rot = ft_min(ft_abs(na->to_top_cost), ft_abs(nb->to_top_cost));
+		na->to_top_cost += rot;
+		nb->to_top_cost += rot;
+		double_rotate(sa, sb, rot, -1);
+	}
+}
+
 void	optimal_to_top(t_list **sa, t_list **sb)
 {
 	int				index;
-	int				rot;
 	t_stack_content	*nb;
 	t_stack_content	*na;
 
 	index = select_to_push(*sa, *sb);
 	nb = get_index(*sb, index);
 	na = NULL;
-
 	if (nb->target_index >= 0)
 	{
 		na = get_index(*sa, nb->target_index);
-		if ((na->to_top_cost > 0) && (nb->to_top_cost > 0))
-		{
-			rot = ft_min(na->to_top_cost, nb->to_top_cost);
-			na->to_top_cost -= rot;
-			nb->to_top_cost -= rot;
-			double_rotate(sa, sb, rot, 1);
-		}
-		else if ((na->to_top_cost < 0) && (nb->to_top_cost < 0))
-		{
-			rot = ft_min(ft_abs(na->to_top_cost), ft_abs(nb->to_top_cost));
-			na->to_top_cost += rot;
-			nb->to_top_cost += rot;
-			double_rotate(sa, sb, rot, -1);
-		}
+		rot(na,nb,sa,sb);
 	}
 	rotate_to_top(nb, sb, 'b');
 	if (na)
@@ -94,3 +99,5 @@ void	optimal_to_top(t_list **sa, t_list **sb)
 	else
 		min_to_top(sa);
 }
+
+
