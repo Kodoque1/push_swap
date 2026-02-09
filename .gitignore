@@ -61,3 +61,4 @@ dkms.conf
 generator.py
 checker_linux
 file
+push_swap

@@ -6,7 +6,7 @@
 /*   By: zaddi <zaddi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/18 13:45:43 by zaddi             #+#    #+#             */
-/*   Updated: 2026/01/26 17:12:12 by zaddi            ###   ########.fr       */
+/*   Updated: 2026/02/09 22:16:28 by zaddi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,6 @@ int	out_of_bound(char *str)
 		return (1);
 	else
 		return(0);
-
 }
 
 int	arg_to_stack(int argc, char **argv, t_list **arg_stack)
