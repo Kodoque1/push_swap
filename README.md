@@ -7,7 +7,7 @@ The goal of this project is to provide for a given list of integers an efficient
 # Instructions:
 
 * Compile the program via `make`.
-* Launch the program with the command `push_swap <list of integer>`
+* Launch the program with the command `./push_swap <list of integer>`
 
 # Resources:
 
