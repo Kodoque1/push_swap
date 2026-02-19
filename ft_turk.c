@@ -6,11 +6,12 @@
 /*   By: zaddi <zaddi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/13 20:32:12 by zaddi             #+#    #+#             */
-/*   Updated: 2026/01/26 17:27:14 by zaddi            ###   ########.fr       */
+/*   Updated: 2026/02/19 16:18:29 by zaddi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_pushswap.h"
+#include <limits.h>
 
 void	to_top_cost(t_list *stack)
 {
@@ -47,7 +48,7 @@ int	select_to_push(t_list *sa, t_list *sb)
 	size = ft_lstsize(sb);
 	i = 0;
 	optimal_index = 0;
-	min_cost = 2147483647;
+	min_cost = INT_MAX;
 	while (i < size)
 	{
 		content = ((t_stack_content *)sb->content);
@@ -71,7 +72,7 @@ void	setup_smallest_bigger(t_list *sa, t_list *sb)
 
 	while (sb)
 	{
-		min_bigger = 2147483647;
+		min_bigger = INT_MAX;
 		j = 0;
 		((t_stack_content *)(sb->content))->target_index = -1;
 		index_sa = sa;

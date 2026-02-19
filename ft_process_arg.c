@@ -6,7 +6,7 @@
 /*   By: zaddi <zaddi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/18 13:45:43 by zaddi             #+#    #+#             */
-/*   Updated: 2026/02/09 22:16:28 by zaddi            ###   ########.fr       */
+/*   Updated: 2026/02/19 16:22:54 by zaddi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,11 +31,11 @@ int	out_of_bound(char *str)
 		nbr = nbr * 10 + (*str - '0');
 		str++;
 	}
-	nbr = nbr *sign;
+	nbr = nbr * sign;
 	if ((nbr > 2147483647) || (nbr < -2147483648))
-		return (1);
+		return (NOK);
 	else
-		return(0);
+		return (OK);
 }
 
 int	arg_to_stack(int argc, char **argv, t_list **arg_stack)
@@ -50,7 +50,7 @@ int	arg_to_stack(int argc, char **argv, t_list **arg_stack)
 		if (strs)
 			ret = convert(count_word(argv[1], ' '), strs, arg_stack);
 		else
-			return (0);
+			return (NOK);
 	}
 	else
 		ret = convert(argc, argv+1, arg_stack);
@@ -59,14 +59,14 @@ int	arg_to_stack(int argc, char **argv, t_list **arg_stack)
 	return (ret);
 }
 
-void	add_new_number(t_list **arg_stack, char *number)
+int	add_new_number(t_list **arg_stack, char *number)
 {
 	t_stack_content	*content;
 	t_list			*node;
 
 	content = (t_stack_content *)malloc(sizeof(t_stack_content));
 	if (!content)
-		return ;
+		return (NOK);
 	content->target_index = -1;
 	content->to_top_cost = -1;
 	content->value = ft_atoi(number);
@@ -74,9 +74,10 @@ void	add_new_number(t_list **arg_stack, char *number)
 	if (!node)
 	{
 		free(content);
-		return ;
+		return (NOK);
 	}
 	ft_lstadd_back(arg_stack, node);
+	return (OK);
 }
 
 int	convert(int argc, char **argv, t_list **arg_stack)
@@ -88,10 +89,13 @@ int	convert(int argc, char **argv, t_list **arg_stack)
 	{
 		if (ft_strisnum(argv[i]) && !out_of_bound(argv[i])
 			&& !number_in_stack(*arg_stack, argv[i]))
-			add_new_number(arg_stack, argv[i]);
+		{
+			if (!add_new_number(arg_stack, argv[i]))
+				return (NOK);
+		}
 		else
-			return (0);
+			return (NOK);
 		i++;
 	}
-	return (1);
+	return (OK);
 }

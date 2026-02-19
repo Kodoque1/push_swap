@@ -6,11 +6,12 @@
 /*   By: zaddi <zaddi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/21 11:54:46 by zaddi             #+#    #+#             */
-/*   Updated: 2026/01/26 17:27:20 by zaddi            ###   ########.fr       */
+/*   Updated: 2026/02/19 16:22:54 by zaddi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_pushswap.h"
+#include <limits.h>
 
 void	ft_del(void *data)
 {
@@ -54,10 +55,10 @@ int	number_in_stack(t_list *arg_stack, char *number)
 	{
 		content = arg_stack->content;
 		if (content->value == num)
-			return (1);
+			return (OK);
 		arg_stack = arg_stack->next;
 	}
-	return (0);
+	return (NOK);
 }
 
 int	index_min(t_list *stack)
@@ -67,7 +68,8 @@ int	index_min(t_list *stack)
 	int				i;
 	t_stack_content	*content;
 
-	min = 2147483647;
+	min = INT_MAX;
+	min_index = 0;
 	i = 0;
 	while (stack)
 	{
