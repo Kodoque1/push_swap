@@ -17,10 +17,10 @@ void	swap(t_list **stack, char sid)
 	t_list	*s1;
 	t_list	*s2;
 
-	if ((sid == 'a') || (sid == 'b'))
-		ft_printf("s%c\n", sid);
 	if (ft_lstsize(*stack) > 1)
 	{
+		if ((sid == 'a') || (sid == 'b'))
+			ft_printf("s%c\n", sid);
 		s1 = (*stack)->next;
 		s2 = s1->next;
 		(*stack)->next = s2;
@@ -33,10 +33,10 @@ void	push(t_list **stacka, t_list **stackb, char sid)
 {
 	t_list	*save_ptr;
 
-	if ((sid == 'a') || (sid == 'b'))
-		ft_printf("p%c\n", sid);
 	if (stacka && *stacka)
 	{
+		if ((sid == 'a') || (sid == 'b'))
+			ft_printf("p%c\n", sid);
 		save_ptr = *stacka;
 		*stacka = save_ptr->next;
 		ft_lstadd_front(stackb, save_ptr);
@@ -47,10 +47,10 @@ void	rotate(t_list **stack, char sid)
 {
 	t_list	*front;
 
-	if ((sid == 'a') || (sid == 'b'))
-		ft_printf("r%c\n", sid);
-	if (stack && *stack)
+	if (stack && *stack && (*stack)->next)
 	{
+		if ((sid == 'a') || (sid == 'b'))
+			ft_printf("r%c\n", sid);
 		front = *stack;
 		*stack = front->next;
 		front->next = NULL;
@@ -63,11 +63,11 @@ void	reverse_rotate(t_list **stack, char sid)
 	t_list	*back;
 	t_list	*stack_index;
 
-	if ((sid == 'a') || (sid == 'b'))
-		ft_printf("rr%c\n", sid);
 	back = NULL;
 	if (stack && *stack && ft_lstsize(*stack) > 1)
 	{
+		if ((sid == 'a') || (sid == 'b'))
+			ft_printf("rr%c\n", sid);
 		stack_index = *stack;
 		while (stack_index)
 		{

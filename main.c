@@ -28,22 +28,14 @@ int	main(int argc, char **argv)
 	t_list	*arg_stack;
 
 	arg_stack = NULL;
-	if (argc > 1)
-	{
-		if (arg_to_stack(argc - 1, argv, &arg_stack))
-		{
-			processing_args(&arg_stack);
-			ft_printf("args passed\n");
-		}
-		else
-		{
-			ft_putstr_fd("Error\n", 2);
-			exit(-1);
-		}
-	}
+	if (argc == 1)
+		return (0);
+	if (arg_to_stack(argc - 1, argv, &arg_stack))
+		processing_args(&arg_stack);
 	else
 	{
 		ft_putstr_fd("Error\n", 2);
-		exit(-1);
+		exit(1);
 	}
+	return (0);
 }
