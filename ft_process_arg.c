@@ -62,12 +62,21 @@ int	arg_to_stack(int argc, char **argv, t_list **arg_stack)
 void	add_new_number(t_list **arg_stack, char *number)
 {
 	t_stack_content	*content;
+	t_list			*node;
 
 	content = (t_stack_content *)malloc(sizeof(t_stack_content));
+	if (!content)
+		return ;
 	content->target_index = -1;
 	content->to_top_cost = -1;
 	content->value = ft_atoi(number);
-	ft_lstadd_back(arg_stack, ft_lstnew(content));
+	node = ft_lstnew(content);
+	if (!node)
+	{
+		free(content);
+		return ;
+	}
+	ft_lstadd_back(arg_stack, node);
 }
 
 int	convert(int argc, char **argv, t_list **arg_stack)
