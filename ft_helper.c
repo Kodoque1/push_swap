@@ -6,7 +6,7 @@
 /*   By: zaddi <zaddi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/21 11:54:46 by zaddi             #+#    #+#             */
-/*   Updated: 2026/02/19 16:22:54 by zaddi            ###   ########.fr       */
+/*   Updated: 2026/02/21 21:49:47 by zaddi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,11 +23,13 @@ t_stack_content	*get_index(t_list *stack, int index)
 	int	i;
 
 	i = 0;
-	while (i < index)
+	while (i < index && stack)
 	{
 		i++;
 		stack = stack->next;
 	}
+	if (!stack)
+		return (NULL);
 	return (stack->content);
 }
 

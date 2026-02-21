@@ -6,7 +6,7 @@
 /*   By: zaddi <zaddi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/13 20:32:12 by zaddi             #+#    #+#             */
-/*   Updated: 2026/02/19 16:18:29 by zaddi            ###   ########.fr       */
+/*   Updated: 2026/02/21 20:55:26 by zaddi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,10 +94,14 @@ void	setup_smallest_bigger(t_list *sa, t_list *sb)
 
 void	min_to_top(t_list **stack)
 {
-	int		min_index;
+	int				min_index;
+	t_stack_content	*content;
 
 	min_index = index_min(*stack);
-	rotate_to_top(get_index(*stack, min_index), stack, 'a');
+	content = get_index(*stack, min_index);
+	if (!content)
+		return ;
+	rotate_to_top(content, stack, 'a');
 }
 
 void	sort_turk(t_list **sa, t_list **sb)
