@@ -12,3 +12,5 @@ The goal of this project is to provide for a given list of integers an efficient
 # Resources:
 
 https://pure-forest.medium.com/push-swap-turk-algorithm-explained-in-6-steps-4c6650a458c0
+
+Code review done by Copilot
