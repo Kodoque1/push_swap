@@ -32,7 +32,7 @@ static void	mini_sort_gt(int e1, int e2, int e3, t_list **stack)
 	}
 	else if (e1 > e3)
 		rotate(stack, 'a');
-	else
+	else if (e1 > e2)
 		swap(stack, 'a');
 }
 
@@ -56,7 +56,7 @@ void	mini_sort(t_list **stack)
 	{
 		e1 = ((t_stack_content *)(*stack)->content)->value;
 		e2 = ((t_stack_content *)(*stack)->next->content)->value;
-		if (e1 < e2)
+		if (e1 > e2)
 			swap(stack, 'a');
 	}
 }
