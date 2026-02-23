@@ -6,7 +6,7 @@
 /*   By: zaddi <zaddi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/13 20:32:12 by zaddi             #+#    #+#             */
-/*   Updated: 2026/02/21 20:55:26 by zaddi            ###   ########.fr       */
+/*   Updated: 2026/02/23 16:49:01 by zaddi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,8 +109,9 @@ void	sort_turk(t_list **sa, t_list **sb)
 	int	size;
 
 	size = ft_lstsize(*sa);
-	while (size-- > 2)
+	while (size-- > 3)
 		push(sa, sb, 'b');
+	mini_sort(sa);
 	while (*sb)
 	{
 		setup_smallest_bigger(*sa, *sb);

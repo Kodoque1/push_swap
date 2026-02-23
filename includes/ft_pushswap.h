@@ -6,7 +6,7 @@
 /*   By: zaddi <zaddi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/21 11:45:33 by zaddi             #+#    #+#             */
-/*   Updated: 2026/02/21 21:22:00 by zaddi            ###   ########.fr       */
+/*   Updated: 2026/02/23 16:38:08 by zaddi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,8 +49,8 @@ int				index_min(t_list *stack);
 int				convert(int argc, char **argv, t_list **arg_stack);
 int				number_in_stack(t_list *arg_stack, char *number);
 int				index_min(t_list *stack);
-int					is_sorted(t_list *stack);
-
+int				is_sorted(t_list *stack);
+void			mini_sort(t_list **stack);
 t_stack_content	*get_index(t_list *stack, int index);
 
 #endif

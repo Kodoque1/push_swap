@@ -6,7 +6,7 @@
 /*   By: zaddi <zaddi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/21 11:48:12 by zaddi             #+#    #+#             */
-/*   Updated: 2026/02/19 16:22:54 by zaddi            ###   ########.fr       */
+/*   Updated: 2026/02/23 16:38:48 by zaddi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ int	main(int argc, char **argv)
 		processing_args(&arg_stack);
 	else
 	{
+		ft_lstclear(&arg_stack, free);
 		ft_putstr_fd("Error\n", 2);
 		exit(1);
 	}

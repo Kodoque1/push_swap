@@ -6,17 +6,12 @@
 /*   By: zaddi <zaddi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/21 11:54:46 by zaddi             #+#    #+#             */
-/*   Updated: 2026/02/21 21:49:47 by zaddi            ###   ########.fr       */
+/*   Updated: 2026/02/23 07:48:00 by zaddi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_pushswap.h"
 #include <limits.h>
-
-void	ft_del(void *data)
-{
-	free(data);
-}
 
 t_stack_content	*get_index(t_list *stack, int index)
 {
