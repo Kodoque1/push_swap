@@ -42,21 +42,13 @@ void	mini_sort(t_list **stack)
 	int	e2;
 	int	e3;
 
-	if (ft_lstsize(*stack) == 3)
-	{
-		e1 = ((t_stack_content *)(*stack)->content)->value;
-		e2 = ((t_stack_content *)(*stack)->next->content)->value;
-		e3 = ((t_stack_content *)(*stack)->next->next->content)->value;
-		if (e1 < e2 && (e2 > e3))
-			mini_sort_lt(e1, e3, stack);
-		else
-			mini_sort_gt(e1, e2, e3, stack);
-	}
-	else if (ft_lstsize(*stack) == 2)
-	{
-		e1 = ((t_stack_content *)(*stack)->content)->value;
-		e2 = ((t_stack_content *)(*stack)->next->content)->value;
-		if (e1 > e2)
-			swap(stack, 'a');
-	}
+	if (ft_lstsize(*stack) != 3)
+		return ;
+	e1 = ((t_stack_content *)(*stack)->content)->value;
+	e2 = ((t_stack_content *)(*stack)->next->content)->value;
+	e3 = ((t_stack_content *)(*stack)->next->next->content)->value;
+	if (e1 < e2 && (e2 > e3))
+		mini_sort_lt(e1, e3, stack);
+	else
+		mini_sort_gt(e1, e2, e3, stack);
 }
